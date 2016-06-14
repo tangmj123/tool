@@ -118,16 +118,4 @@ public class SelectionSort{
 	public static void print(Object[] a){
 		Stream.of(a).forEach(System.out::println);
 	}
-	
-	
-	public static void main(String[] args) {
-		Integer[] a = {10,2,52,15,3};
-		System.out.println(isSorted(a));;
-		sort(a);
-		print(a);
-		System.out.println(isSorted(a));;
-		String[] b = {"fds","a","af"};
-		sort(b);
-		print(b);
-	}
 }
