@@ -5,7 +5,7 @@ import java.util.stream.Stream;
 /**
  * 快速排序
  * @author madhouse
- * 从右边找一个比基准小的，从左边找一个比基准大的,交换,跟新基准，递归处理基准两边的数据
+ * 从右边找一个比基准小的，从左边找一个比基准大的,交换,更新基准，递归处理基准两边的数据
  */
 public class QuickSort {
 
@@ -36,9 +36,8 @@ public class QuickSort {
 			while(lessOrEqual(a[i], temp)&&i<j) i++;  //从左边找比基准打的位置
 			
 			exch(a, i, j);                            //交换
-			
 		}
-		//a[i] 座位新基准
+		//a[i] 做为新基准
 //		a[lo] = a[i];
 //		a[i] = temp;
 		exch(a, lo, i);
@@ -71,7 +70,7 @@ public class QuickSort {
 			while(lessOrEqual(a[i], temp,c)&&i<j) i++;    //找一个比基准打的
 			exch(a, i, j);                           //交换
 		}
-		//跟新基准
+		//更新基准
 		exch(a, i, lo);
 		//递归处理基准两边的数据
 		sort(a,c,lo,i-1);
