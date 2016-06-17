@@ -1,6 +1,8 @@
 package com.tmj.tools.data.structure;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * 栈 FIFO 基于数组实现
@@ -17,7 +19,7 @@ public class ArrayStack<Item>implements Iterable<Item> {
 	
 	public ArrayStack(int capacity){
 		capacity = capacity < 0?DEFAULT_CAPACITY:capacity;
-		items = (Item[]) new Object[capacity];
+		items = (Item[]) new Object[capacity]; 
 	}
 	/**
 	 * 压栈
@@ -52,13 +54,14 @@ public class ArrayStack<Item>implements Iterable<Item> {
 	 * @return
 	 */
 	public boolean empty(){
-		return items.length == 0;
+		return size == 0;
 	}
 	/**
 	 * 返回第一个item
 	 * @return
 	 */
 	public Item peek(){
+		if(size==0) throw new NoSuchElementException();
 		return items[size-1];
 	}
 	/**
@@ -102,6 +105,7 @@ public class ArrayStack<Item>implements Iterable<Item> {
 	}
 	public static void main(String[] args) {
 		ArrayStack<String> stack = new ArrayStack<String>(5);
+		System.out.println(stack.empty());
 		stack.push("hello");
 		stack.push("world");
 		stack.push("hello");
@@ -124,5 +128,6 @@ public class ArrayStack<Item>implements Iterable<Item> {
 		s = stack.peek();
 		System.out.println(s);
 		stack.print();
+		System.out.println(stack.empty());
 	}
 }
