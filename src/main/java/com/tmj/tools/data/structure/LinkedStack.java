@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * @author Tangmj
  * 栈 FIFO (链表实现)
  */
-public class Stack<Item> implements Iterable<Item>{
+public class LinkedStack<Item> implements Iterable<Item>{
 	private Node<Item> first;   //top of the stack
 	private int N;              //the size of stack
 	
@@ -17,7 +17,7 @@ public class Stack<Item> implements Iterable<Item>{
 		Node<Item> next; //the next 
 	}
 	
-	public Stack(){
+	public LinkedStack(){
 		first = null;
 		N     = 0;
 	}
@@ -57,6 +57,14 @@ public class Stack<Item> implements Iterable<Item>{
 	public boolean isEmpty(){
 		return N == 0;
 	}
+	/**
+	 * 返回第一个元素
+	 * @return
+	 */
+	public Item peek(){
+		if(isEmpty()) throw new NoSuchElementException();
+		return first.item;
+	}
 	
 	@Override
 	public Iterator<Item> iterator() {
@@ -88,7 +96,7 @@ public class Stack<Item> implements Iterable<Item>{
 	}
 
 	public static void main(String[] args) {
-		Stack<String> stack = new Stack<String>();
+		LinkedStack<String> stack = new LinkedStack<String>();
 		stack.push("hello");
 		stack.push("world");
 		String s = stack.pop();
