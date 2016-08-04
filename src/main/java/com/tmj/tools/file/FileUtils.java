@@ -1,5 +1,6 @@
 package com.tmj.tools.file;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,7 +14,11 @@ import java.util.zip.ZipOutputStream;
  *
  */
 public class FileUtils {
-	
+	/**
+	 * java.io.File[]压缩到java.io.File
+	 * @param srcfiles
+	 * @param zipfile
+	 */
 	public static void zipFiles(java.io.File[] srcfiles, java.io.File zipfile) {
 		byte[] buf = new byte[1024];
 		try(CheckedOutputStream cos = new CheckedOutputStream(new FileOutputStream(zipfile), new CRC32());
@@ -31,5 +36,16 @@ public class FileUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * 得到系统的临时文件目录
+	 * @return
+	 */
+	public static String sysTemp(){
+		String tmpDic = System.getProperty("java.io.tmpdir");
+			if(!tmpDic.endsWith(File.separator))
+				tmpDic = tmpDic + File.separator;
+		return tmpDic;
 	}
 }
