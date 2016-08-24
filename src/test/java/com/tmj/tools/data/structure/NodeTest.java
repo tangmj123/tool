@@ -24,19 +24,20 @@ public class NodeTest {
 	public void inversion(){
 		Node<String> pre = node;
 		Node<String> curr = pre.getNext();
-		Node<String> tmp ;
+		Node<String> tmp ;//用来保存curr.next
 		while(curr != null){
 			tmp = curr.getNext();
 			curr.setNext(pre);
-			
+			//
 			pre = curr;
 			curr = tmp;
 		}
-		node.setNext(null);
+		node.setNext(null);// 否则stackoverflow
 		System.out.println(pre);
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
 	@Test
 	public void testIterable(){
 		for (Node n : node) {
