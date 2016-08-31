@@ -1,5 +1,8 @@
 package com.tmj.tools.data.structure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,4 +47,74 @@ public class NodeTest {
 			System.out.println(n.getValue());
 		}
 	}
+	
+	
+	@Test
+	public void test(){
+		Node<String> curr = node;
+		Node<String> next = curr.getNext();
+		Node<String> tmp;
+		while(next!=null){
+			tmp = next.getNext();
+			next.setNext(curr);
+			
+			curr = next;
+			next = tmp;
+		}
+		node.setNext(null);
+		System.out.println(curr);
+	}
+	
+	
+	@Test
+	public void genNodeByArray(){
+		//逆向生成
+		String[] arr = {"a","b","c","d","e"};
+		int len = arr.length;
+		Node<String> first = null;
+		for(int i = len -1;i >= 0;i--){
+//			if(first == null) first = new Node<String>(arr[i]);// 不用处理
+//			else{
+//				Node<String> tmp = new Node<String>(arr[i]);
+//				tmp.setNext(first);
+//				first = tmp;
+//			}
+			
+			Node<String> tmp = new Node<String>(arr[i]);
+			tmp.setNext(first);
+			first = tmp;// 更新first
+		}
+		System.out.println(first);
+	}
+	
+	@Test
+	public void genNodeByArray2(){
+		//正向生成
+		String[] arr = {"a","b","c","d","e"};
+		int len = arr.length;
+		Node<String> first = null;
+		Node<String> tmp = null;
+		for(int i = 0;i < len;i++ ){
+			if(first == null) first = new Node<String>(arr[i]);
+			else if(tmp == null) {
+				tmp = new Node<String>(arr[i]);
+				first.setNext(tmp);
+			}
+			else tmp.setNext(tmp = new Node<String>(arr[i]));	
+		}
+		System.out.println(first);
+	}
+	
+	@Test
+	public void genArrayByNode(){
+		List<String> list = new ArrayList<String>();
+		
+		Node<String> next = new Node<String>("");
+		next.setNext(node);
+		while((next = next.getNext()) != null){
+			list.add(next.getValue());
+		}
+		System.out.println(list);
+	}
 }
+
